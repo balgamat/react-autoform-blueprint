@@ -1,0 +1,9 @@
+.idea
+./src/
+index.ts
+*.ts
+*.tsx
+!*.d.ts
+!*.js
+!*.json
+./src/types.ts
