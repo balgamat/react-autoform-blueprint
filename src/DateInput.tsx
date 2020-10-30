@@ -1,27 +1,25 @@
-/*
-import React from 'react';
-import { Classes, FormGroup } from '@blueprintjs/core';
+import * as React from 'react';
+import { IFormGroupProps } from '@blueprintjs/core';
 import { InputComponentProps } from '@balgamat/react-autoform';
-import { parse } from 'date-fns/fp';
-import { DateInput as Input } from '@blueprintjs/datetime';
+import { DateInput as Input, IDateInputProps } from '@blueprintjs/datetime';
+import { InputWrapper } from './util/InputWrapper';
+import { FC } from 'react';
+import { localeUtils } from './util/localeUtils';
 
-export const DateInput = <T, P extends InputComponentProps<T, Date>>(
-  props: P,
-) => (
-  <FormGroup
-    className={`${Classes.HEADING} mt-3`}
-    label={props.label}
-    labelFor={`${props.label}-input`}
-  >
+export type DateProps = InputComponentProps & Partial<IFormGroupProps> & Partial<IDateInputProps>;
+
+export const DateInput: FC<DateProps> = props => (
+  <InputWrapper {...props}>
     <Input
       fill
       placeholder={'DD.MM.20XX'}
-      formatDate={date => date.toLocaleDateString()}
-      locale={'cs_CZ'}
+      formatDate={date => (props.timePrecision ? date.toLocaleString() : date.toLocaleDateString())}
+      locale={'cs'}
+      parseDate={str => new Date(str)}
+      {...props}
       onChange={props.onChange}
-      parseDate={str => parse(new Date(), 'dd.M.Y', str)}
-      value={props.value || null}
+      value={new Date(props.value) || undefined}
+      localeUtils={localeUtils}
     />
-  </FormGroup>
+  </InputWrapper>
 );
-*/

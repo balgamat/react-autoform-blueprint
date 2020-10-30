@@ -1,16 +1,12 @@
 import * as React from 'react';
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { Meta, Story } from '@storybook/react/types-6-0';
 import { Components } from '../index';
-import { TextProps } from '../Text';
 import '../../styles.css';
-import { Intent } from '@blueprintjs/core';
-import { TitleProps } from '../Title';
 import {
   Autoform,
   AutoformHookParams,
   customizeInputComponents,
   useAutoform,
-  validation,
 } from '@balgamat/react-autoform';
 
 export default {
@@ -20,7 +16,7 @@ export default {
 
 const Template: Story<AutoformHookParams<any>> = args => {
   customizeInputComponents(Components);
-  const [editedObj, Form, validationResult] = useAutoform({
+  const [editedObj, Form] = useAutoform({
     onObject: args.onObject || {},
     withFields: args.withFields,
   });
@@ -28,9 +24,8 @@ const Template: Story<AutoformHookParams<any>> = args => {
   return (
     <div>
       <form style={{ padding: 24 }}>{Form}</form>
+      <hr />
       <div style={{ padding: 24 }}>
-        Validation has <b>{validationResult.valid ? 'passed' : 'failed'}</b>.
-        <br />
         This is the resulting object:
         <br />
         <pre>{JSON.stringify(editedObj, null, 2)}</pre>
@@ -45,6 +40,18 @@ Preview.args = {
     title: 'This is a title',
     terms: true,
     age: 16,
+    list: [
+      {
+        name: 'Ivan',
+        surname: 'Tohavemore',
+      },
+      {
+        name: 'Sam',
+        surname: 'Otherfriend',
+      },
+    ],
+    attachments: [{}],
+    birthdate: '2001-11-26T22:00:00.000Z',
   },
   withFields: [
     {
@@ -66,6 +73,11 @@ Preview.args = {
       groupStyle: { marginTop: 16 },
     },
     {
+      label: 'Profile photo',
+      path: 'photo',
+      type: 'Image',
+    },
+    {
       label: 'Password',
       path: 'password',
       type: 'Text',
@@ -81,9 +93,78 @@ Preview.args = {
       customError: 'You have to be 18 or older to continue',
     },
     {
+      label: 'So that means you were born.. when?',
+      path: 'birthdate',
+      type: 'Date',
+    },
+    {
+      label: 'Gender',
+      path: 'gender',
+      type: 'Select',
+      options: [
+        { data: null, label: 'None' },
+        { data: 'M', label: 'Male' },
+        { data: 'F', label: 'Female' },
+      ],
+      fill: true,
+    },
+    {
+      label: 'Or maybe you want to select more genders?',
+      path: 'genderMulti',
+      type: 'SelectMultiple',
+      options: [
+        { data: 'N/A', label: 'None' },
+        { data: 'M', label: 'Male' },
+        { data: 'F', label: 'Female' },
+        { data: 'X', label: 'Trans' },
+        { data: '0', label: 'Neutral' },
+      ],
+      fill: true,
+    },
+    {
+      label: 'Here, you set up some preferences',
+      path: 'preferences',
+      type: 'Preferences',
+      options: [
+        { data: 'dogs', label: 'I adore doggos' },
+        { data: 'cats', label: 'I totally dig felines' },
+        { data: 'reptiles', label: 'I am a fool for reptiles' },
+      ],
+      inlineSwitches: true,
+    },
+    {
+      label: 'Can you name your BFFs?',
+      path: 'list',
+      type: 'List',
+      fields: [
+        {
+          label: 'Name',
+          path: 'name',
+          type: 'Text',
+        },
+        {
+          label: 'Surname',
+          path: 'surname',
+          type: 'Text',
+        },
+      ],
+    },
+    {
       label: 'Something about yourself',
       path: 'description',
       type: 'TextArea',
+    },
+    {
+      label: 'Maybe include some attachments?',
+      path: 'attachments',
+      type: 'List',
+      fields: [
+        {
+          label: 'File',
+          path: 'file',
+          type: 'File',
+        },
+      ],
     },
     {
       label: 'I accept the Terms & Conditions',

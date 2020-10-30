@@ -1,4 +1,7 @@
 {
   "SELECT": "Select...",
-  "NOTHING_FOUND": "Nothing found"
+  "NOTHING_FOUND": "Nothing found",
+  "SEARCH": "Search...",
+  "BROWSE": "Browse...",
+  "CHOOSE_IMAGE": "Choose image..."
 }

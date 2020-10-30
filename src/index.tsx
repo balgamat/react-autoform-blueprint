@@ -1,25 +1,25 @@
-import { ArrayInput } from './ArrayInput';
-import { Picture } from './Picture';
-import { TextArea } from './TextArea';
-import { Title } from './Title';
-import { Text } from './Text';
+import { DateInput } from './DateInput';
+import { Editable } from './Editable';
+import { Image } from './Image';
+import { List } from './List';
 import { Number } from './Number';
-import { Switch } from './Switch';
+import { Preferences } from './Preferences';
 import { Select } from './Select';
 import { SelectMultiple } from './SelectMultiple';
-import { DateInput } from './DateInput';
-import { SelectPhotos } from './SelectPhotos';
-import { SwitchGroup } from './SwitchGroup';
-import { Editable } from './Editable';
+import { Switch } from './Switch';
+import { Text } from './Text';
+import { TextArea } from './TextArea';
+import { Title } from './Title';
+import { FileInput } from './File';
 
 export const Components = {
-  Array: ArrayInput,
-  SwitchGroup,
-  DateInput,
+  Date: DateInput,
   Editable,
+  File: FileInput,
+  Image,
+  List,
   Number,
-  Photos: SelectPhotos,
-  Picture,
+  Preferences,
   Select,
   SelectMultiple,
   Switch,

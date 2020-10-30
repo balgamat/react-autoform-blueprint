@@ -1,5 +1,5 @@
-export interface IOptions<T extends { data: unknown; key?: string; label?: string }> {
-  options: T[];
-  keyExtractor(option: T['data']): string;
-  labelExtractor(option: T['data']): string;
+export interface IOptions<T = any> {
+  options: Array<{ data: T; key?: string; label?: string }>;
+  keyExtractor(option: T): string;
+  labelExtractor(option: T): string;
 }

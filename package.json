@@ -1,6 +1,6 @@
 {
   "name": "@balgamat/react-autoform-blueprint",
-  "version": "1.0.0",
+  "version": "0.9.0",
   "description": "Blueprint components for @balgamat/react-autoform",
   "main": "dist/index.js",
   "private": false,
@@ -55,7 +55,9 @@
   "dependencies": {
     "@blueprintjs/core": "^3.35.0",
     "@blueprintjs/datetime": "^3.19.3",
-    "@blueprintjs/select": "^3.14.3"
+    "@blueprintjs/select": "^3.14.3",
+    "date-fns": "^2.16.1",
+    "react-day-picker": "^7.4.8"
   },
   "peerDependencies": {
     "@balgamat/react-autoform": "^7.0.2",
