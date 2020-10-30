@@ -18,7 +18,7 @@ export type SelectMultipleProps = InputComponentProps &
   };
 
 export const SelectMultiple: FC<SelectMultipleProps> = props => {
-  const { t } = useTranslation('AUTOFORM_BLUEPRINT');
+  const { t } = useTranslation('autoform');
   const { options, getOptionFromValue } = prepareOptions(props);
 
   return (
@@ -39,9 +39,11 @@ export const SelectMultiple: FC<SelectMultipleProps> = props => {
             );
           }}
           itemPredicate={(q, i) => includes(q.toLowerCase(), i.label.toLowerCase())}
-          noResults={<MenuItem disabled={true} text={t('NOTHING_FOUND')} />}
+          noResults={
+            <MenuItem disabled={true} text={t('BLUEPRINT.NOTHING_FOUND', 'Nothing found')} />
+          }
           fill
-          placeholder={t('SELECT')}
+          placeholder={t('BLUEPRINT.SELECT', 'Select...')}
           onItemSelect={i =>
             props.onChange(ifElse(includes, without, append)(i.data)(props.value || []))
           }

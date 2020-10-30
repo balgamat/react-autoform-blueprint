@@ -8,6 +8,8 @@ import {
   customizeInputComponents,
   useAutoform,
 } from '@balgamat/react-autoform';
+import { I18nextProvider } from 'react-i18next';
+import { i18n } from '../i18n';
 
 export default {
   title: 'Form',
@@ -22,7 +24,7 @@ const Template: Story<AutoformHookParams<any>> = args => {
   });
 
   return (
-    <div>
+    <I18nextProvider i18n={i18n}>
       <form style={{ padding: 24 }}>{Form}</form>
       <hr />
       <div style={{ padding: 24 }}>
@@ -30,7 +32,7 @@ const Template: Story<AutoformHookParams<any>> = args => {
         <br />
         <pre>{JSON.stringify(editedObj, null, 2)}</pre>
       </div>
-    </div>
+    </I18nextProvider>
   );
 };
 
@@ -62,9 +64,10 @@ Preview.args = {
     },
     {
       label: 'Subtitle',
-      path: 'subtitle',
+      path: 'inner.subtitle',
       type: 'Editable',
       textType: 'H4',
+      validation: 'string:min=5,max=140,required',
     },
     {
       label: 'Username',

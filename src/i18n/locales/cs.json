@@ -1,0 +1,10 @@
+{
+  "BLUEPRINT": {
+    "SELECT": "Vyberte ...",
+    "NOTHING_FOUND": "Nic nenalezeno.",
+    "SEARCH": "Vyhledat...",
+    "BROWSE": " ... ",
+    "CHOOSE_IMAGE": "Vyberte obrázek...",
+    "CHOOSE_FILE": "Vyberte soubor..."
+  }
+}

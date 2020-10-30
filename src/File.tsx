@@ -9,17 +9,17 @@ import { InputWrapper } from './util/InputWrapper';
 export type FileInputProps = InputComponentProps<File> & IInputGroupProps;
 
 export const FileInput: FC<InputComponentProps> = ({ onChange, value, ...props }) => {
-  const { t } = useTranslation('AUTOFORM_BLUEPRINT');
+  const { t } = useTranslation('autoform');
 
   return (
     <InputWrapper {...{ onChange, value, ...props }}>
       <Input
         fill
-        buttonText={t('BROWSE')}
+        buttonText={t('BLUEPRINT.BROWSE', ' ... ')}
         disabled={false}
         hasSelection={!!value}
         {...props}
-        text={pathOr(t('CHOOSE_FILE'), ['name'], value) as string}
+        text={pathOr(t('BLUEPRINT.CHOOSE_FILE', 'Choose file...'), ['name'], value) as string}
         onInputChange={({
           target: {
             validity,

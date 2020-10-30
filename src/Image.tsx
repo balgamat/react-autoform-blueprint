@@ -14,7 +14,7 @@ export type ImageProps = InputComponentProps<File> &
   };
 
 export const Image: FC<InputComponentProps> = ({ onChange, value, ...props }) => {
-  const { t } = useTranslation('AUTOFORM_BLUEPRINT');
+  const { t } = useTranslation('autoform');
 
   return (
     <InputWrapper {...{ onChange, value, ...props }}>
@@ -43,12 +43,12 @@ export const Image: FC<InputComponentProps> = ({ onChange, value, ...props }) =>
       )}
       <FileInput
         fill
-        buttonText={t('BROWSE')}
+        buttonText={t('BLUEPRINT.BROWSE', ' ... ')}
         disabled={false}
         hasSelection={!!value}
         {...props}
         inputProps={{ accept: 'image/*', ...props.inputProps }}
-        text={pathOr(t('CHOOSE_IMAGE'), ['name'], value) as string}
+        text={pathOr(t('BLUEPRINT.CHOOSE_IMAGE', 'Choose image...'), ['name'], value) as string}
         onInputChange={({
           target: {
             validity,

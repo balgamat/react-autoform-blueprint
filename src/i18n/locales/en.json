@@ -1,0 +1,9 @@
+{
+  "BLUEPRINT": {
+    "SELECT": "Select...",
+    "NOTHING_FOUND": "Nothing found",
+    "SEARCH": " ... ",
+    "BROWSE": " ... ",
+    "CHOOSE_IMAGE": "Choose image..."
+  }
+}

@@ -18,7 +18,7 @@ export type SelectProps = InputComponentProps &
   };
 
 export const Select: FC<SelectProps> = props => {
-  const { t } = useTranslation('AUTOFORM_BLUEPRINT');
+  const { t } = useTranslation('autoform');
   const { options, getOptionFromValue } = prepareOptions(props);
 
   return (
@@ -40,13 +40,15 @@ export const Select: FC<SelectProps> = props => {
         itemPredicate={
           props.filterable ? (q, i) => includes(q.toLowerCase(), i.label.toLowerCase()) : undefined
         }
-        noResults={<MenuItem disabled={true} text={t('NOTHING_FOUND')} />}
+        noResults={
+          <MenuItem disabled={true} text={t('BLUEPRINT.NOTHING_FOUND', 'Nothing found')} />
+        }
         onItemSelect={i => props.onChange(i.data)}
         resetOnSelect
         itemsEqual={(a, b) => a.key === b.key}
         popoverProps={{ minimal: true }}
         inputProps={{
-          placeholder: t('SEARCH'),
+          placeholder: t('BLUEPRINT.SEARCH', 'Search...'),
           onBlur: e => e.target.focus(),
           id: `opened-filter-input-${props.label}`,
         }}
@@ -61,7 +63,9 @@ export const Select: FC<SelectProps> = props => {
           {props.loading ? (
             <Spinner size={20} />
           ) : (
-            getOptionFromValue(props.value)?.label || props.defaultLabel || t('SELECT')
+            getOptionFromValue(props.value)?.label ||
+            props.defaultLabel ||
+            t('BLUEPRINT.SELECT', 'Select...')
           )}
         </Button>
       </SelectComponent>
