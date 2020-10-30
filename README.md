@@ -28,4 +28,5 @@ customizeInputComponents(BlueprintComponents);
 
 ## Example
 
-![image](https://user-images.githubusercontent.com/6381607/97619988-3461ce00-1a21-11eb-91c2-4af944a8a106.png)
+![image](https://user-images.githubusercontent.com/6381607/97697534-6ae22c00-1aa7-11eb-8f1a-8e54b62ca753.png)
+
