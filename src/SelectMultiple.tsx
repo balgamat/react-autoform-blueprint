@@ -1,9 +1,8 @@
-import { useTranslation } from 'react-i18next';
 import { IMultiSelectProps, MultiSelect } from '@blueprintjs/select';
 import { IButtonProps, IFormGroupProps, MenuItem } from '@blueprintjs/core';
 import * as React from 'react';
-import { FC } from 'react';
-import { InputComponentProps } from '@balgamat/react-autoform';
+import { FC, useContext } from 'react';
+import { AutoformTranslation, InputComponentProps } from '@balgamat/react-autoform';
 import { append, ifElse, includes, remove, without } from 'ramda';
 import { IOptions } from './util/types';
 import { prepareOptions } from './util/prepareOptions';
@@ -12,13 +11,13 @@ import { InputWrapper } from './util/InputWrapper';
 export type SelectMultipleProps = InputComponentProps &
   Partial<IMultiSelectProps<any>> &
   Partial<IFormGroupProps> &
-  IOptions & {
+  Partial<IOptions> & {
     loading?: boolean;
     buttonProps?: Partial<IButtonProps>;
   };
 
 export const SelectMultiple: FC<SelectMultipleProps> = props => {
-  const { t } = useTranslation('autoform');
+  const t = useContext(AutoformTranslation);
   const { options, getOptionFromValue } = prepareOptions(props);
 
   return (
@@ -30,15 +29,15 @@ export const SelectMultiple: FC<SelectMultipleProps> = props => {
             return (
               <MenuItem
                 active={modifiers.active}
-                icon={isTicked ? 'tick' : 'blank'}
+                icon={isTicked! ? 'tick' : 'blank'}
                 onClick={handleClick}
                 key={i.key}
                 text={i.label}
-                intent={isTicked ? 'primary' : 'none'}
+                intent={isTicked! ? 'primary' : 'none'}
               />
             );
           }}
-          itemPredicate={(q, i) => includes(q.toLowerCase(), i.label.toLowerCase())}
+          itemPredicate={(q, i) => includes(q.toLowerCase(), i.label!.toLowerCase())}
           noResults={
             <MenuItem disabled={true} text={t('BLUEPRINT.NOTHING_FOUND', 'Nothing found')} />
           }

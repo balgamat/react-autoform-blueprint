@@ -5,11 +5,13 @@ import '../../styles.css';
 import {
   Autoform,
   AutoformHookParams,
+  AutoformTranslation,
   customizeInputComponents,
   useAutoform,
 } from '@balgamat/react-autoform';
-import { I18nextProvider } from 'react-i18next';
+import { I18nextProvider, useTranslation } from 'react-i18next';
 import { i18n } from '../i18n';
+import { useContext } from 'react';
 
 export default {
   title: 'Form',
@@ -17,20 +19,27 @@ export default {
 } as Meta;
 
 const Template: Story<AutoformHookParams<any>> = args => {
+  const { t } = useTranslation('autoform');
   customizeInputComponents(Components);
+
   const [editedObj, Form] = useAutoform({
     onObject: args.onObject || {},
     withFields: args.withFields,
+    andOptions: {
+      translationFunction: t,
+    },
   });
 
   return (
     <I18nextProvider i18n={i18n}>
-      <form style={{ padding: 24 }}>{Form}</form>
-      <hr />
-      <div style={{ padding: 24 }}>
-        This is the resulting object:
-        <br />
-        <pre>{JSON.stringify(editedObj, null, 2)}</pre>
+      <div>
+        <form style={{ padding: 24 }}>{Form}</form>
+        <hr />
+        <div style={{ padding: 24 }}>
+          This is the resulting object:
+          <br />
+          <pre>{JSON.stringify(editedObj, null, 2)}</pre>
+        </div>
       </div>
     </I18nextProvider>
   );
@@ -109,7 +118,6 @@ Preview.args = {
         { data: 'M', label: 'Male' },
         { data: 'F', label: 'Female' },
       ],
-      fill: true,
     },
     {
       label: 'Or maybe you want to select more genders?',
@@ -123,6 +131,7 @@ Preview.args = {
         { data: '0', label: 'Neutral' },
       ],
       fill: true,
+      validation: 'array:min=1;max=2;required',
     },
     {
       label: 'Here, you set up some preferences',

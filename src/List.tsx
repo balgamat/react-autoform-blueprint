@@ -5,13 +5,22 @@ import { adjust, always, append, remove } from 'ramda';
 import { InputWrapper } from './util/InputWrapper';
 import { FC } from 'react';
 
-export type ListProps = InputComponentProps &
+export type ListProps = InputComponentProps<any[]> &
   Partial<IFormGroupProps> & {
-    fields: Field<any>[];
+    fields?: Field<any>[];
     newObjectTemplate?: any;
   };
 
 export const List: FC<ListProps> = props => {
+  if (!props.fields)
+    throw new Error(
+      `You have to provide the \`fields\` prop for List component.\nYour props: ${JSON.stringify(
+        props,
+        null,
+        2,
+      )}`,
+    );
+
   return (
     <InputWrapper {...props}>
       {(props.value || []).map((i, idx) => (
@@ -19,7 +28,7 @@ export const List: FC<ListProps> = props => {
           <div style={{ flex: 1 }}>
             <Autoform
               {...{
-                fields: props.fields,
+                fields: props.fields!,
                 o: i,
                 updateFn: value => props.onChange(adjust(idx, always(value), props.value)),
               }}

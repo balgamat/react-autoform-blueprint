@@ -35,7 +35,7 @@ export const TYPES = {
 export type EditableProps = InputComponentProps<string> &
   Partial<IEditableTextProps> & { textType?: keyof typeof TYPES };
 
-export const Editable: FC<EditableProps> = ({ textType, ...props }) => (
+export const Editable: FC<EditableProps> = ({ textType = 'Text', ...props }) => (
   <>
     {React.createElement(
       TYPES[textType] || 'div',

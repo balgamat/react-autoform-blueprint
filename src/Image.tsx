@@ -1,9 +1,8 @@
 import { FileInput, IInputGroupProps } from '@blueprintjs/core';
 import * as React from 'react';
-import { InputComponentProps } from '@balgamat/react-autoform';
-import { useTranslation } from 'react-i18next';
+import { CSSProperties, FC, useContext } from 'react';
+import { AutoformTranslation, InputComponentProps } from '@balgamat/react-autoform';
 import { pathOr } from 'ramda';
-import { CSSProperties, FC } from 'react';
 import { InputWrapper } from './util/InputWrapper';
 
 export type ImageProps = InputComponentProps<File> &
@@ -14,7 +13,7 @@ export type ImageProps = InputComponentProps<File> &
   };
 
 export const Image: FC<InputComponentProps> = ({ onChange, value, ...props }) => {
-  const { t } = useTranslation('autoform');
+  const t = useContext(AutoformTranslation);
 
   return (
     <InputWrapper {...{ onChange, value, ...props }}>

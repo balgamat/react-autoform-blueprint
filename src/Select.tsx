@@ -1,7 +1,7 @@
 import { Button, IButtonProps, IFormGroupProps, MenuItem, Spinner } from '@blueprintjs/core';
 import * as React from 'react';
-import { FC, useCallback } from 'react';
-import { InputComponentProps } from '@balgamat/react-autoform';
+import { FC, useCallback, useContext } from 'react';
+import { AutoformTranslation, InputComponentProps } from '@balgamat/react-autoform';
 import { ISelectProps, Select as SelectComponent } from '@blueprintjs/select';
 import { useTranslation } from 'react-i18next';
 import { find, identity, includes, propEq } from 'ramda';
@@ -12,13 +12,13 @@ import { prepareOptions } from './util/prepareOptions';
 export type SelectProps = InputComponentProps &
   Partial<ISelectProps<any>> &
   Partial<IFormGroupProps> &
-  IOptions & {
+  Partial<IOptions> & {
     loading?: boolean;
     buttonProps?: Partial<IButtonProps>;
   };
 
 export const Select: FC<SelectProps> = props => {
-  const { t } = useTranslation('autoform');
+  const t = useContext(AutoformTranslation);
   const { options, getOptionFromValue } = prepareOptions(props);
 
   return (

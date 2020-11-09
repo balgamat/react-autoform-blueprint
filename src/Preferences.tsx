@@ -9,7 +9,7 @@ import { prepareOptions } from './util/prepareOptions';
 
 export type SwitchGroupProps = InputComponentProps &
   Partial<ISwitchProps> &
-  IOptions &
+  Partial<IOptions> &
   Partial<IFormGroupProps>;
 
 export const Preferences: FC<SwitchGroupProps> = props => {

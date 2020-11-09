@@ -6,7 +6,9 @@ import { InputWrapper } from './util/InputWrapper';
 import { FC } from 'react';
 import { localeUtils } from './util/localeUtils';
 
-export type DateProps = InputComponentProps & Partial<IFormGroupProps> & Partial<IDateInputProps>;
+export type DateProps = InputComponentProps &
+  Partial<IFormGroupProps> &
+  Partial<IDateInputProps> & { locale?: string };
 
 export const DateInput: FC<DateProps> = props => (
   <InputWrapper {...props}>
@@ -14,7 +16,7 @@ export const DateInput: FC<DateProps> = props => (
       fill
       placeholder={'DD.MM.20XX'}
       formatDate={date => (props.timePrecision ? date.toLocaleString() : date.toLocaleDateString())}
-      locale={'cs'}
+      locale={props.locale || 'en'}
       parseDate={str => new Date(str)}
       {...props}
       onChange={props.onChange}

@@ -1,7 +1,7 @@
 import { Classes, Colors, Label } from '@blueprintjs/core';
 import * as React from 'react';
 
-export const Errorcito = (props: { error: string; style?: object }) =>
+export const Errorcito = (props: { error?: string; style?: object }) =>
   props.error ? (
     <div
       className={[Classes.TEXT_SMALL, Classes.TEXT_MUTED, Classes.INTENT_DANGER].join(' ')}

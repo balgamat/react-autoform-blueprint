@@ -1,5 +1,8 @@
 .idea
 ./src/
+./dist/stories
+./dist/i18n
+.storybook/
 index.ts
 *.ts
 *.tsx
