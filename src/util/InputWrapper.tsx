@@ -6,7 +6,7 @@ import { Errorcito } from './Errorcito';
 
 export const InputWrapper: FC<InputComponentProps & { groupStyle?: CSSProperties }> = props => (
   <FormGroup
-    className={`${Classes.HEADING} py-3`}
+    className={`${Classes.HEADING}`}
     inline={props.inline}
     label={props.label}
     labelFor={`${props.label}-input`}
